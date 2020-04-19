@@ -19,23 +19,42 @@
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
-        
 
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then ((response)=>{
-     console.log(response.data.articles);
-     response.data.articles.forEach((article)=>{
-         console.log(article);
-        //let newCard = cardCreator(article);
-        //cardsContainer.appendChild(newCard);
-     })
-
+        console.log(response.data.articles);
+      
+         response.data.articles.javascript.forEach((article)=>{
+           console.log(article);
+            let newCard = cardCreator(article.headline, article.authorName, article.authorPhoto);
+            cardsContainer.appendChild(newCard);
+        })
+        response.data.articles.bootstrap.forEach((article)=>{
+            console.log(article);
+            let newCard = cardCreator(article.headline, article.authorName, article.authorPhoto);
+            cardsContainer.appendChild(newCard);
+        })
+        response.data.articles.technology.forEach((article)=>{
+            console.log(article);
+            let newCard = cardCreator(article.headline, article.authorName, article.authorPhoto);
+            cardsContainer.appendChild(newCard);
+        })
+        response.data.articles.jquery.forEach((article)=>{
+            console.log(article);
+            let newCard = cardCreator(article.headline, article.authorName, article.authorPhoto);
+            cardsContainer.appendChild(newCard);
+        })
+        response.data.articles.node.forEach((article)=>{
+            console.log(article);
+            let newCard = cardCreator(article.headline, article.authorName, article.authorPhoto);
+            cardsContainer.appendChild(newCard);
+        })
+        
     })
     .catch((err) =>{
         console.log('error', err);
-    })
-
+    });
 // <div class="card">
 //   <div class="headline">{Headline of article}</div>
 //   <div class="author">
@@ -43,16 +62,14 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 //       <img src={url of authors image} />
 //     </div>
 //     <span>By {author's name}</span>
-function cardCreator(data){
-    // <div class="card">
-           
+function cardCreator(headline, authorName, authorPhoto){
+    // <div class="card"       
         let card = document.createElement('div');
-        card.classList.add('card');
-         
+        card.classList.add('card'); 
         // <div class="headline">{Headline of article}</div>
         let headlineDiv = document.createElement('div');
         headlineDiv.classList.add('headline');
-        headline.textContent = `${data.headline}`;
+        headlineDiv.textContent = headline;
         //   <div class="author">
         let author = document.createElement('div');
         author.classList.add('author');
@@ -61,12 +78,12 @@ function cardCreator(data){
         imgContainer.classList.add('img-container');
         //<img src={url of authors image} />
         let img = document.createElement('img');
-        img.src = data.authorPhoto;
+        img.src = `${authorPhoto}`;
         //<span>By {author's name}</span>
         let authorSpan= document.createElement('span');
-        authorSpan.textContent = `By ${data.authorName}`;
+        authorSpan.textContent = `By ${authorName}`;
 
-        imgContainer.appendChild(authorPhoto);
+        imgContainer.appendChild(img);
         imgContainer.appendChild(authorSpan);
         author.appendChild(imgContainer);
         card.appendChild(headlineDiv);
@@ -74,6 +91,8 @@ function cardCreator(data){
 
         return card;
      }
+    
+      let cardsContainer = document.querySelector('.cards-container');
+
    
-    let cardsContainer = document.querySelector('.cards-container');
 
